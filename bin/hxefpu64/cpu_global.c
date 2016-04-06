@@ -1232,7 +1232,7 @@ void class_cpu_fixed_spr_1_gen(uint32 client_no, uint32 random_no, struct instru
 	RT1= get_random_gpr(client_no,ins->op1_dtype,0);          /* get a register */
 	op1 = ((RT1 & 0x1f) << (ins->op1_pos));                     
 	RT2 = ((get_random_no_32(client_no)) %3);		  /* SPR register number */
-	RT2 = RT2 && 0x03;
+	RT2 = RT2 & 0x03;
 	RT = sprs[RT2];
 	tgt = (RT) << (ins->tgt_pos);				   /* SPLIT FIELD lower bits */
 	mcode = (ins->op_eop_mask | op1 | tgt);           
@@ -1255,7 +1255,7 @@ void class_cpu_fixed_spr_2_gen(uint32 client_no, uint32 random_no, struct instru
 	tc_memory = &(cptr->tc_ptr[INITIAL_BUF]->tc_ins[prolog_size + num_ins_built]);
 	/* pick registeres */
 	RT2 = ((get_random_no_32(client_no)) %4);		  /* SPR register number */
-	RT2 = RT2 && 0x03;
+	RT2 = RT2 & 0x03;
 	RT1 = sprs[RT2];
 	op1 = RT1<< (ins->op1_pos);
 	/* from now use R6, as R10 is used for cpu_id_mask with THREADS_SYNC enabled */
@@ -2048,7 +2048,7 @@ void class_cpu_cache_2_gen(uint32 client_no, uint32 random_no, struct instructio
 				random = get_random_no_32(client_no);
 				/* Now set GO to zero, stop to 10 or 11 and insert stream id */
 				random = (random & 0x7fffffff);			/* random no. with GO =0 */
-				random = (random || 0x40000000 );		/* make stop = 10 or 11  */
+				random = (random | 0x40000000 );		/* make stop = 10 or 11  */
 				rand_offset = ((random & 0xfffffff0) | streamid); /* insert stream id in the EA*/
 				/* RB = get_random_gpr(client_no,ins->op1_dtype,1); */
 				RC = get_random_gpr(client_no,ins->op1_dtype,1);
