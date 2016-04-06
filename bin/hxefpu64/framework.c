@@ -271,6 +271,23 @@ main(int argc, char *argv[])
 
 	strcpy(dinfo.run_type, "OTH");
 
+	if ( argc < 4 ) {
+		/* standalone invocation without all arguments. Put proper warning and return. */
+		printf("###########################################################################\n");
+		printf("#                                                                         #\n");
+		printf("#        WARNING : Exerciser invoked without proper arguments             #\n");
+		printf("#                                                                         #\n");
+		printf("#          Please invoke exerciser with proper arguments in               #\n");
+		printf("#                      following format :                                 #\n");
+		printf("#              <exerciser> <device> <mode> <rulefile>                     #\n");
+		printf("#                                                                         #\n");
+		printf("# eg : hxefpu64 /dev/fpu0 OTH /usr/lpp/htx/rules/reg/hxefpu64/default.p8  #\n");
+		printf("#                                                                         #\n");
+		printf("###########################################################################\n");
+
+		return(-1);
+	}
+
 	/*  Parse command line arguments */
 	if(argv[1]) strcpy(dinfo.device_name, argv[1]);
 	if(argv[2]) strcpy(dinfo.run_type, argv[2]);
@@ -304,23 +321,6 @@ main(int argc, char *argv[])
 	}
 #endif
 		
-	if ( argc < 4 ) {
-		/* standalone invocation without all arguments. Put proper warning and return. */
-		printf("###########################################################################\n");
-		printf("#                                                                         #\n");
-		printf("#        WARNING : Exerciser invoked without proper arguments             #\n");
-		printf("#                                                                         #\n");
-		printf("#          Please invoke exerciser with proper arguments in               #\n");
-		printf("#                      following format :                                 #\n");
-		printf("#              <exerciser> <device> <mode> <rulefile>                     #\n");
-		printf("#                                                                         #\n");
-		printf("# eg : hxefpu64 /dev/fpu0 OTH /usr/lpp/htx/rules/reg/hxefpu64/default.p8  #\n");
-		printf("#                                                                         #\n");
-		printf("###########################################################################\n");
-
-		return(-1);
-	}
-
 #ifdef __HTX_LINUX__
 	hd.hotplug_cpu = 1; 	/* Register with htx supervisor for hot plug event intimation. */
 #endif
