@@ -271,20 +271,11 @@ main(int argc, char *argv[])
 
 	strcpy(dinfo.run_type, "OTH");
 
-	/*  Parse command line arguments */
-	if(argv[1]) strcpy(dinfo.device_name, argv[1]);
-	if(argv[2]) strcpy(dinfo.run_type, argv[2]);
-	if(argv[3]) strcpy(dinfo.rule_file_name, argv[3]);
-
-	/* Set htx_data structure parameters */
-    if(argv[0]) strcpy(hd.HE_name, argv[0]);
-    if(argv[1]) strcpy(hd.sdev_id, argv[1]);
-    if(argv[2]) strcpy(hd.run_type, argv[2]);
-	atexit(cleanup_mem_atexit);
 #ifdef SCTU
-	if (strcasecmp(dinfo.device_name, "SCTU_DEV") == 0) {
+	if ((argc == 2) && (strcasecmp(argv[1], "SCTU_DEV") == 0)) {
 		int i;
 
+		strcpy(dinfo.device_name, argv[1]);
 		init_syscfg_with_malloc();
 		shm_flag_for_malloc = 1;
 		rc = chip_testcase();
@@ -303,7 +294,7 @@ main(int argc, char *argv[])
 		return(rc | rc1);
 	}
 #endif
-		
+
 	if ( argc < 4 ) {
 		/* standalone invocation without all arguments. Put proper warning and return. */
 		printf("###########################################################################\n");
@@ -320,6 +311,17 @@ main(int argc, char *argv[])
 
 		return(-1);
 	}
+
+	/*  Parse command line arguments */
+	strcpy(dinfo.device_name, argv[1]);
+	strcpy(dinfo.run_type, argv[2]);
+	strcpy(dinfo.rule_file_name, argv[3]);
+
+	/* Set htx_data structure parameters */
+	strcpy(hd.HE_name, argv[0]);
+	strcpy(hd.sdev_id, argv[1]);
+	strcpy(hd.run_type, argv[2]);
+	atexit(cleanup_mem_atexit);
 
 #ifdef __HTX_LINUX__
 	hd.hotplug_cpu = 1; 	/* Register with htx supervisor for hot plug event intimation. */
