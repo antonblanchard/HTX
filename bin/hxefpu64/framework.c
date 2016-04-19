@@ -4886,9 +4886,10 @@ create_context(int client_no)
 	 }
 	 return(0);
 }
-int cleanup_mem_atexit(){
-    cleanup_mem(0);
-    return(0);
+
+void cleanup_mem_atexit(void)
+{
+	cleanup_mem(0);
 }
 
 int

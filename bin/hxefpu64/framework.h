@@ -1161,7 +1161,7 @@ int execute_testcase(int, int);
 int compare_results(int, int *);
 int allocate_mem(struct shm_buf *);
 int cleanup_mem(int);
-int cleanup_mem_atexit(void);
+void cleanup_mem_atexit(void);
 int read_rf(void);
 void set_rule_defaults(void);
 int get_rule(int *, FILE *, struct ruleinfo *);
