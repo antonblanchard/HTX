@@ -1112,6 +1112,7 @@ int  get_page_details(void){
 		pclose(fp);
 		return -3;
 	}
+	huge_page_size = 0;
 	rc = fscanf(fp,"%d\n",&huge_page_size);
 	huge_page_size = (huge_page_size * 1024);
 	if(rc == EOF || rc == 0 || huge_page_size != 16777216)
