@@ -250,6 +250,10 @@ get_env_details(&e);
     get_hardware_stat(&Sys_stat);
 	int cores_exc = 0;
 	
+    rc1 = pthread_rwlock_rdlock(&(global_ptr->syscfg.rw));
+    if (rc1 !=0  ) {
+        printf("\n lock inside get_hardware_config failed with errno=%d\n",rc1);
+    }
 	if(!strcmp(e.proc_shared_mode,"yes"))
 	{
 		printf("Number of nodes \t\t\t: NA\n");
@@ -308,10 +312,6 @@ get_env_details(&e);
         	}
         	printf("\n");
     	}
-    rc1 = pthread_rwlock_rdlock(&(global_ptr->syscfg.rw));
-    if (rc1 !=0  ) {
-        printf("\n lock inside get_hardware_config failed with errno=%d\n",rc1);
-    }
 	
 
 		printf("\n\n--------------------------CPUS PER NODE-----------------------------\n");
