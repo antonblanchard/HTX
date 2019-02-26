@@ -105,6 +105,8 @@ extern int htxd_start_daemon(htxd*);
 
 extern int get_exec_time_value_from_shm_hdr();
 
+extern volatile int htxd_shutdown_flag;
+
 #ifdef __HTX_LINUX__
 	extern int smt, bind_th_num;
 #endif

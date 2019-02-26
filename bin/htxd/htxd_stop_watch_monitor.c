@@ -31,8 +31,6 @@
 #include "htxd_signal.h"
 #include "htxd_trace.h"
 
-extern volatile int htxd_shutdown_flag;
-extern htxd *htxd_global_instance;
 
 int htxd_get_run_time_set_exer_count(htxd_ecg_info *p_ecg_info_list)
 {

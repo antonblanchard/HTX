@@ -40,9 +40,6 @@
 #define LOG_ENTRY_COUNT 6  /* 5 + 1 */
 
 
-extern htxd *htxd_global_instance;
-extern volatile int htxd_shutdown_flag;
-
 int htxd_hang_monitor_ecg(htxd_ecg_info *p_ecg_info_to_hang_monitor, char *command_result)
 {
 	struct htxshm_HE *p_HE;

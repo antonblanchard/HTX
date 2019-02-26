@@ -16,6 +16,7 @@
 #include "htxd_dr.h"
 #include "htxd_equaliser.h"
 #include "htxd_trace.h"
+#include "htxd_time_driven_run_monitor.h"
 
 
 extern volatile int htxd_ecg_shutdown_flag;

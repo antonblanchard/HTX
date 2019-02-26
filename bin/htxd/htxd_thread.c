@@ -31,7 +31,6 @@
 #include "htxd_instance.h"
 
 
-extern volatile int htxd_shutdown_flag;
 pthread_mutex_t htxd_trace_log_lock;
 extern pthread_t global_main_thread_id;
 

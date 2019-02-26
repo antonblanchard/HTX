@@ -40,9 +40,6 @@
 #include "htxd_instance.h"
 #include "htxd_util.h"
 
-extern volatile int htxd_shutdown_flag;
-
-
 
 void sig_end(int sig, int code, struct sigcontext *scp)
 {

@@ -39,15 +39,14 @@
 #include "htxd_trace.h"
 #include "htxd_util.h"
 #include "htxd_instance.h"
+#include "htxd_time_driven_run_monitor.h"
 
 #define LOG_ENTRY_COUNT 6  /* 5 + 1 */
 
 
-extern htxd *htxd_global_instance;
-extern volatile int htxd_shutdown_flag;
-int cycles_complete_flag = FALSE;
+static int cycles_complete_flag = FALSE;
 
-int htxd_time_driven_run_monitor_ecg(htxd_ecg_info *p_ecg_info_to_time_driven_run_monitor, char *command_result)
+static int htxd_time_driven_run_monitor_ecg(htxd_ecg_info *p_ecg_info_to_time_driven_run_monitor, char *command_result)
 {
     struct htxshm_HE *p_HE;
     struct htxshm_hdr *p_hdr;
@@ -104,7 +103,7 @@ int htxd_time_driven_run_monitor_ecg(htxd_ecg_info *p_ecg_info_to_time_driven_ru
     return 0;
 }
 
-void *htxd_time_driven_run_monitor(void *data)
+static void *htxd_time_driven_run_monitor(void *data)
 {
 
     htxd_enable_thread_cancel_state_type();

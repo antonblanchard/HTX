@@ -47,8 +47,7 @@
 #include "htxd_thread.h"
 #include "htxd_trace.h"
 #include "htxd_util.h"
-
-extern volatile int htxd_shutdown_flag;
+#include "htxd_time_driven_run_monitor.h"
 
 extern int htxd_shutdown_all_mdt(void);
 extern int htxd_stop_hotplug_monitor(htxd_thread **);

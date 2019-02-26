@@ -31,9 +31,8 @@
 #include "htxd_common_define.h"
 #include "htxd_util.h"
 #include "htxd_trace.h"
+#include "htxd_instance.h"
 
-
-extern volatile int htxd_shutdown_flag;
 extern volatile int htxd_ecg_shutdown_flag;
 
 
