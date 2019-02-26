@@ -40,6 +40,7 @@
 #   include <sys/ioctl.h>
 #   include <netinet/in.h>
 #   include <netdb.h>
+#   include <ctype.h>
 #   include "hxecomdef.h"
 #   include "comrw.h"
 #	include "comdapl.h"

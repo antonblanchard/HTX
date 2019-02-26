@@ -18,6 +18,7 @@
 /* IBM_PROLOG_END_TAG */
 
 #include <string.h>
+#include <stdlib.h>
 
 #include "automate.h" 
 #define STRERROR(E) (E >= 0 && E <= sys_nerr)? sys_errlist[E] : ""

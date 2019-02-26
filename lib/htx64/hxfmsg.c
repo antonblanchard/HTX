@@ -22,6 +22,8 @@
 #include <htx_local.h>
 #include <hxihtx64.h>
 #include <stdlib.h>
+#include <sys/types.h>
+#include <unistd.h>
 
 
 /*
