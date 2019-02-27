@@ -1,12 +1,9 @@
-sudo: required
-
 language: c
-
-services:
- - docker
-
-before_install:
- - docker build -t open-power/htx - < Dockerfile
-
+os:
+  - linux-ppc64le
+addons:
+  apt:
+    packages:
+      - libncurses5 libncurses-dev libdapl-dev
 script:
- - docker run -t -v `pwd`:/HTX:z open-power/htx /bin/sh -c "cd /HTX; ln -s /lib/powerpc64le-linux-gnu/libncurses.so.5  /lib/powerpc64le-linux-gnu/libncurses.so; ln -s /lib/powerpc64le-linux-gnu/libtinfo.so.5  /lib/powerpc64le-linux-gnu/libtinfo.so ; CC=powerpc64le-linux-gnu-gcc CPP=powerpc64le-linux-gnu-g++ AR=powerpc64le-linux-gnu-ar LD=powerpc64le-linux-gnu-ld AS=powerpc64le-linux-gnu-as make -j`grep -c processor /proc/cpuinfo`"
+  - make -j$(nproc)
